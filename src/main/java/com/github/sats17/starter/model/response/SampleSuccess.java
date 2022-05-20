@@ -1,5 +1,10 @@
 package com.github.sats17.starter.model.response;
 
+/**
+ * Sample response body class, you can create your own body.
+ * @author sats17
+ *
+ */
 public class SampleSuccess {
 
 	private String message;

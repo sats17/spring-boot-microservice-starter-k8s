@@ -17,7 +17,7 @@ import com.github.sats17.starter.utility.ApiResponseUtility;
 public class SampleController {
 	
 	/*
-	 * Shows how you can create success response of list
+	 * Shows how you can create success response of any list
 	 */
 	@GetMapping("/success")
 	public ResponseEntity<FinalResponse<List<SampleSuccess>>> testSuccess() {

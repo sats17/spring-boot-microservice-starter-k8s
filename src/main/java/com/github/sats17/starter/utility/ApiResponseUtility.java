@@ -9,6 +9,12 @@ import com.github.sats17.starter.model.response.FinalResponse;
 import com.github.sats17.starter.model.response.SampleSuccess;
 import com.github.sats17.starter.model.response.Status;
 
+/**
+ * API Response utility class will generate error and success payloads.
+ * 
+ * @author sats17
+ *
+ */
 public class ApiResponseUtility {
 
 	public static ResponseEntity<FinalResponse<SampleSuccess>> successResponseCreator(SampleSuccess body, String message) {

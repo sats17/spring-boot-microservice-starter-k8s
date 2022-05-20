@@ -4,11 +4,18 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+/**
+ * Status class contains information about your payload
+ * 
+ * @author sats17
+ *
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Status {
 
 	private Integer rootCode;
 	private String rootType;
+	private String service;
 	private List<Error> error;
 
 	public Integer getRootCode() {
@@ -35,9 +42,18 @@ public class Status {
 		this.error = error;
 	}
 
+	public String getService() {
+		return service;
+	}
+
+	public void setService(String service) {
+		this.service = service;
+	}
+
 	@Override
 	public String toString() {
-		return "Status [rootCode=" + rootCode + ", rootType=" + rootType + ", error=" + error + "]";
+		return "Status [rootCode=" + rootCode + ", rootType=" + rootType + ", service=" + service + ", error=" + error
+				+ "]";
 	}
 
 }
