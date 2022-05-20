@@ -16,6 +16,9 @@ import com.github.sats17.starter.utility.ApiResponseUtility;
 @RequestMapping("/api")
 public class SampleController {
 	
+	/*
+	 * Shows how you can create success response of list
+	 */
 	@GetMapping("/success")
 	public ResponseEntity<FinalResponse<List<SampleSuccess>>> testSuccess() {
 		List<SampleSuccess> test = new ArrayList<>();
