@@ -16,7 +16,6 @@ public class Status {
 	private Integer rootCode;
 	private String rootType;
 	private String service;
-	private List<Error> error;
 
 	public Integer getRootCode() {
 		return rootCode;
@@ -34,14 +33,6 @@ public class Status {
 		this.rootType = string;
 	}
 
-	public List<Error> getError() {
-		return error;
-	}
-
-	public void setError(List<Error> error) {
-		this.error = error;
-	}
-
 	public String getService() {
 		return service;
 	}
@@ -52,8 +43,7 @@ public class Status {
 
 	@Override
 	public String toString() {
-		return "Status [rootCode=" + rootCode + ", rootType=" + rootType + ", service=" + service + ", error=" + error
-				+ "]";
+		return "Status [rootCode=" + rootCode + ", rootType=" + rootType + ", service=" + service + "]";
 	}
 
 }

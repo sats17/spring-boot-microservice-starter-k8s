@@ -1,5 +1,7 @@
 package com.github.sats17.starter.model.response;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
@@ -21,17 +23,17 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * Error Response Example :
  * {
  * 		"status": {
- * 			"rootCode": 240000,
+ * 			"rootCode": 40000,
  * 			"rootType": "RequestValidationException",
  * 			"service": "application_name"
- * 			"error": {
+ * 		}, 
+ * 		"error": [{
  * 				"resultCode": 40001,
  * 				"resultType": "HeaderValidationException",
- * 				"message": "API-Key missing",
+ * 				"message": "API-Key is missing",
  * 				"httpMethod": "GET",
  * 				"httpRequestURI": "/api/register"
- * 			}
- * 		}
+ * 		}]
  * }
  * 
  * @author sats17
@@ -43,6 +45,7 @@ public class FinalResponse<E> {
 
 	private Status status;
 	private E response;
+	private List<Error> error;
 
 	public Status getStatus() {
 		return status;
@@ -59,10 +62,22 @@ public class FinalResponse<E> {
 	public void setResponse(E response) {
 		this.response = response;
 	}
+	
+	
+
+	public List<Error> getError() {
+		return error;
+	}
+
+	public void setError(List<Error> error) {
+		this.error = error;
+	}
 
 	@Override
 	public String toString() {
-		return "FinalResponse [status=" + status + ", response=" + response + "]";
+		return "FinalResponse [status=" + status + ", response=" + response + ", error=" + error + "]";
 	}
+
+	
 
 }

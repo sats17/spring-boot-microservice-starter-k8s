@@ -8,9 +8,10 @@ import org.springframework.http.ResponseEntity;
 import com.github.sats17.starter.model.response.FinalResponse;
 import com.github.sats17.starter.model.response.SampleSuccess;
 import com.github.sats17.starter.model.response.Status;
+import com.github.sats17.starter.model.response.Error;
 
 /**
- * API Response utility class will generate error and success payloads.
+ * API Response utility class will generate error and success payload.
  * 
  * @author sats17
  *
@@ -43,5 +44,23 @@ public class ApiResponseUtility {
 				   finalResponse, HttpStatus.OK);
 		return successResponse;
 	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static ResponseEntity<FinalResponse> validationErrorResponseCreator(List<Error> errors,
+			String message) {
+		Status status = new Status();
+		status.setRootCode(40000);
+		status.setRootType("ValidationException");
+		status.setService("StarterAPI");
+	
+		FinalResponse finalResponse = new FinalResponse<>();
+		finalResponse.setStatus(status);
+		finalResponse.setError(errors);
+		ResponseEntity<FinalResponse> errorResponse = new ResponseEntity<>(
+				   finalResponse, HttpStatus.BAD_REQUEST);
+		return errorResponse;
+	}
+	
+	
 	
 }
