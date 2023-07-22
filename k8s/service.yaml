@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: starter-service
+spec:
+  ports:
+    - name: "app-port"
+      protocol: "TCP"
+      port: 9222       # The port inside the cluster
+      targetPort: 8081  # The port exposed by the service
+    - name: jmx
+      protocol: TCP
+      port: 9221     # The port inside the cluster
+      targetPort: 9221  # The port exposed by the service
+  type: LoadBalancer # Type of service
+  selector:
+    app: starter
