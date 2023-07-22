@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: starter-role
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["configmaps", "pods", "services", "endpoints", "secrets"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: starter-role-binding
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: starter-service
+  namespace: default
+roleRef:
+  kind: Role
+  name: starter-role
+  apiGroup: rbac.authorization.k8s.io
