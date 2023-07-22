@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: starter # Deployment name
+spec:
+  selector:
+    matchLabels:
+      app: starter # Need to check why it is required
+  replicas: 2 # No. of pod replicas
+  template:
+    metadata:
+      labels:
+        app: starter # Need to check why it is required
+    spec:
+      serviceAccount: starter-account
+      containers:
+        - name: starter
+          image: starter:1 # Docker image name, add :version if available
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081 # Docker image exposed port.
+              name: app-port
+          env:
+            - name: spring.application.name
+              value: 'config-client'
+            # - name: spring.config.name
+            #   value: 'appconfig,application'
+            # - name: spring.profiles.active
+            #   value: 'appconfig'              
+            # - name: spring.config.location
+            #   value: 'classpath:/config/'          
+            # - name: spring.cloud.kubernetes.config.enabled
+            #   value: 'true'
+            # - name: spring.cloud.kubernetes.config.namespace
+            #   value: 'default'
+            # - name: spring.cloud.kubernetes.config.name
+            #   value: 'config-client'
+            - name: management.endpoints.web.exposure.include
+              value: 'refresh'
+            - name: server.port
+              value: '8081'
+            # - name: spring.cloud.kubernetes.reload.enabled
+            #   value: 'true'
+            # - name: spring.cloud.kubernetes.reload.strategy
+            #   value: 'refresh'
+            # - name: spring.cloud.kubernetes.reload.mode
+            #   value: 'polling'
+
+
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "10m"
+            limits:
+              memory: "600Mi"
+              cpu: "600m"
+          volumeMounts:
+            - name: starter-volume
+              mountPath: '/config/application-appconfig.yaml'
+              subPath: 'application-appconfig.yaml'
+            - name: common-starter-volume
+              mountPath: '/config/application.yaml'
+              subPath: 'application.yaml'
+      volumes:
+        - name: starter-volume
+          configMap:
+            name: starter
+            # items: 
+            # - key: application.yaml
+            #   path: application.yaml
+        - name: common-config-volume
+          configMap:
+            name: common-config
+            # items: 
+            # - key: common.yaml
+            #   path: common.yaml
