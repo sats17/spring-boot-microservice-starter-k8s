@@ -6,12 +6,12 @@ spec:
   ports:
     - name: "app-port"
       protocol: "TCP"
-      port: 9222       # The port inside the cluster
-      targetPort: 8081  # The port exposed by the service
+      port: 9222       # indicates that the Service will listen on port 9222
+      targetPort: 8081  # means that the Service will forward the incoming traffic to port 8081 on the pods that are part of the Service.
     - name: jmx
       protocol: TCP
-      port: 9221     # The port inside the cluster
-      targetPort: 9221  # The port exposed by the service
+      port: 9221     # indicates that the Service will listen on port 9222
+      targetPort: 9221  # means that the Service will forward the incoming traffic to port 8081 on the pods that are part of the Service.
   type: LoadBalancer # Type of service
   selector:
     app: starter
