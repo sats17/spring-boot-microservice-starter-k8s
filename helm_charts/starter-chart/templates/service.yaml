@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "starter-chart.fullname" . }}
+  labels:
+    {{- include "starter-chart.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.starter.port }}
+      targetPort: {{ .Values.service.starter.targetPort }}
+      protocol: TCP
+      name: {{ .Values.service.starter.name }}
+  selector:
+    {{- include "starter-chart.selectorLabels" . | nindent 4 }}
